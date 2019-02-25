@@ -52,6 +52,10 @@ def upload():
         return redirect(url_for('home'))
 
     return render_template('upload.html',form=form)
+    
+@app.route('/files')
+def files():
+    return render_template('files.html',images=get_uploaded_images())
 
 def get_uploaded_images():
     rootdir=os.getcwd()
@@ -59,6 +63,7 @@ def get_uploaded_images():
     
     for subdir, dirs, files in os.walk(rootdir +'/app/static/uploads'):
         for file in files:
+            
             print(os.path.join(subdir,file))
 
 
